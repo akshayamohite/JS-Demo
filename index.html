@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Display Image On Button Clicked</title>
+
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0
+    }
+
+    ul {
+      list-style: none
+    }
+
+    body {
+      font-family: arial;
+      font-size: 15px;
+    }
+
+    .wrapper {
+      width: 500px;
+      margin: 30px auto 0;
+    }
+
+    ul {
+      float: left;
+      width: 45%
+    }
+
+    li {
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #e15960;
+      color: #fff;
+      text-transform: capitalize;
+      cursor: pointer;
+      border-radius: 5px
+    }
+
+    li.active,
+    li:hover {
+      background: #263238
+    }
+
+    li:last-child {
+      margin-right: 0
+    }
+
+    #img-wrap {
+      float: right;
+      width: 45%
+    }
+
+    #img-wrap img {
+      width: 100%
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <ul>
+      <li onclick="showImg('black')" id="black">black</li>
+      <li onclick="showImg('gold')" id="gold">gold</li>
+      <li onclick="showImg('blue')" id="blue">blue</li>
+      <li onclick="showImg('rose-gold')" id="rose-gold">rose gold</li>
+    </ul>
+    <div id="img-wrap"></div>
+  </div>
+
+  <script type="text/javascript">
+    var imgPresent = true;
+    var imgWrap = document.getElementById('img-wrap');
+    function showImg(img) {
+      removeActive();
+      loadImg(img);
+      document.getElementById(img).classList.add('active');
+    }
+
+    function loadImg(img) {
+      var setImgPath = "images/" + img + ".jpeg";
+      if (imgPresent) {
+        var img = document.createElement('img');
+        img.src = setImgPath;
+        imgWrap.appendChild(img);
+        imgPresent = false;
+      } else {
+        imgWrap.getElementsByTagName('img')[0].src = setImgPath;
+      }
+    }
+
+    function removeActive() {
+      var list = document.getElementsByTagName('li');
+      for (var i = 0; i < list.length; i++) {
+        list[i].classList.remove('active');
+      }
+    }
+  </script>
+
+</body>
+</html>
